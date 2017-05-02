@@ -15,7 +15,7 @@ We'll clean this up before evals.
 RSpec testing docs that might be useful:
 - https://github.com/rspec/rspec-rails#have_http_status
 
-I'm working through [today's API lesson](http://backend.turing.io/module3/lessons/building_an_api) and applying it to our models. 
+I'm working through [today's API lesson](http://backend.turing.io/module3/lessons/building_an_api) and applying it to our models.
 
 
 ## Design Decisions made so far
@@ -25,3 +25,14 @@ I'm working through [today's API lesson](http://backend.turing.io/module3/lesson
 
 - I can practice adding and modifying the tables down the road
 - Josh (instructor) recommended not ever importing data or building functionality that you don't know that you need. "You'll never know less about the problem than you know right now"
+- needed to figure out where to _require 'csv'_ in the app...
+- ditto for transactions data
+- I added "created_at" and "updated at" data in our Transactions migration. The columns are called 'trans_updated_at' and 'trans_created_at', to read in the data in the CSV, and to differenciate 
+
+### Misc useful resources
+
+Rake stuff:
+- http://stackoverflow.com/questions/12461260/how-can-i-import-a-csv-file-via-a-rake-task
+- http://stackoverflow.com/questions/3346108/how-to-write-rake-task-to-import-data-to-rails-app
+- http://stackoverflow.com/questions/876396/do-rails-rake-tasks-provide-access-to-activerecord-models
+- http://stackoverflow.com/questions/29881172/unknown-attribute-rails-on-import-csv-uninitialized-constant
