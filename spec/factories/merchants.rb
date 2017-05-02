@@ -1,5 +1,7 @@
 FactoryGirl.define do
   factory :merchant do
-    name "Turing School"
+    sequence :name do
+      Faker::Superhero.name
+    end
   end
 end
