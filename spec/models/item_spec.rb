@@ -10,5 +10,11 @@ RSpec.describe Item, type: :model do
     it "has belongs to a merchant" do
       should belong_to(:merchant)
     end
+    it "has many invoice items" do
+      should have_many(:invoice_items)
+    end
+    it "has many invoices" do
+      should have_many(:invoices).through(:invoice_items)
+    end
   end
 end
