@@ -14,6 +14,7 @@ describe "Items API" do
     expect(items.count).to eq(3)
     expect(item["name"]).to eq(item_list.first.name)
   end
+  
   it "can get one item by id" do
     item_1 = create(:item)
     id = item_1.id

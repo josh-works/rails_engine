@@ -18,4 +18,11 @@ RSpec.describe Invoice, type: :model do
       should have_many(:items).through(:invoice_items)
     end
   end
+
+  it "#order_total" do
+    invoice_1 = create(:invoice_with_invoice_items)
+
+    expect(invoice_1.order_total).to eq(3000)
+  end
+
 end

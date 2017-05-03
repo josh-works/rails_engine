@@ -15,6 +15,7 @@ describe "Invoices API" do
     expect(invoice["id"]).to eq(invoice_list.first.id)
     expect(invoice["status"]).to eq(invoice_list.first.status)
   end
+
   it "show a single invoice" do
     invoice_1 = create(:invoice)
     id = invoice_1.id
