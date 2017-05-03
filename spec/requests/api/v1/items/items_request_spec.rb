@@ -25,6 +25,6 @@ describe "Items API" do
     expect(item["id"]).to eq(id)
     expect(item["name"]).to eq(item_1.name)
     expect(item["description"]).to eq(item_1.description)
-    expect(item["unit_price"]).to eq(item_1.unit_price)
+    expect(item["unit_price"]).to eq(item_1.format_unit_price)
   end
 end
