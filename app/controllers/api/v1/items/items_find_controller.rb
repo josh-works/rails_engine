@@ -5,6 +5,7 @@ class Api::V1::Items::ItemsFindController < ApplicationController
     @items = Item.where(search_params)
   end
 
+
   def show
     @item = Item.find_by(search_params)
   end
