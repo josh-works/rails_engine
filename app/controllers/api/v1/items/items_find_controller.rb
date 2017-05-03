@@ -1,7 +1,11 @@
 class Api::V1::Items::ItemsFindController < ApplicationController
 
+  def index
+    @items = Item.where(format_find_params(search_params))
+  end
+
   def show
-    @item = Item.find_by(search_params)
+    @item = Item.find_by(format_find_params(search_params))
   end
 
   private
@@ -11,6 +15,7 @@ class Api::V1::Items::ItemsFindController < ApplicationController
                   :name,
                   :description,
                   :unit_price,
+                  :merchant_id,
                   :created_at,
                   :updated_at)
   end
