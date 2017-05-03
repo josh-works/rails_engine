@@ -6,7 +6,9 @@ FactoryGirl.define do
     sequence :description  do |n|
       Faker::RuPaul.quote
     end
-    unit_price 1000
+    sequence :unit_price do |n|
+      1000 * n
+    end
     merchant
   end
 end

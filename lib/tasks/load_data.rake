@@ -1,5 +1,13 @@
 require 'csv'
 namespace :load_data do
+  task :items => :environment do
+    CSV.foreach('db/data/items.csv', headers: true) do |row|
+      Item.create([
+                  row.to_hash
+                  ])
+      puts "Created Item #{Item.last.id}"
+    end
+  end
   task :csvs => :environment do
     puts "loading merchants"
     CSV.foreach('db/data/merchants.csv', :headers => true, :encoding => 'ISO-8859-1:UTF-8') do |row|
