@@ -38,6 +38,25 @@ describe "Merchants API" do
     expect(merchant["name"]).to eq(merchant_1.name)
   end
 
+  it "can get revenue by merchant" do
+    merchant_1 = create(:merchant)
+    invoices = create_list(:invoice, 2)
+    merchant_1.invoices << invoices
+    invoices.last.items << create_list(:item, 3)
+    transactions = create_list(:invoice, 3)
+    binding.pry
+
+
+    get "/api/v1/merchants/#{merchant_1.id}/revenue"
+
+    expect(response).to be_success
+    merchant = JSON.parse(response.body)
+
+    expect(merchant["revenue"]).to eq(merchant_1.revenue)
+
+
+  end
+
 
 end
 
