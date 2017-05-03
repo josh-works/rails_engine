@@ -10,8 +10,11 @@ Rails.application.routes.draw do
       end
       resources :transactions, only: [:index, :show]
       resources :customers, only: [:index, :show]
-      resources :items, only: [:index, :show], :controller => "items/items"
-
+      resources :items, only: [:index, :show], :controller => "items/items" do
+        collection do
+          get "find", to: "items/items_find#show"
+        end
+      end
       resources :invoices, only: [:index, :show], :controller => "invoices/invoices"
       resources :invoice_items, only: [:index, :show], :controller => "invoice_items/invoice_items"
     end
