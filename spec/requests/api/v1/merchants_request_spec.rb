@@ -28,15 +28,17 @@ describe "Merchants API" do
     expect(merchant["id"]).to eq(id)
   end
 
-  it "can find a merchant by id" do
+  xit "can find a merchant by case_insensitive name" do
     merchant_1 = create(:merchant)
+    name = merchant_1.name.upcase
 
-    get "/api/v1/merchants/find?name=#{merchant_1.name}"
-
+    get "/api/v1/merchants/find?name=#{name}"
     merchant = JSON.parse(response.body)
     expect(response).to be_success
     expect(merchant["name"]).to eq(merchant_1.name)
   end
+
+
 end
 
 
