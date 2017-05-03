@@ -1,13 +1,20 @@
 class Api::V1::Merchants::MerchantsFindController < ApplicationController
+  before_action :format_params
 
+  def index
+    @merchants = Merchant.where(search_params)
+  end
+  
   def show
-    binding.pry
-    @merchant = Merchant.find_by(merchant_params)
+    @merchant = Merchant.find_by(search_params)
   end
 
-    private
+  private
 
-    def merchant_params
-      params.permit(:name, :id)
-    end
+  def search_params
+    params.permit(:id,
+                  :name,
+                  :created_at,
+                  :updated_at)
+  end
 end

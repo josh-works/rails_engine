@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       resources :merchants, only: [:index, :show], :controller => "merchants/merchants" do
         collection do
           get "find", to: "merchants/merchants_find#show"
+          get "find_all", to: "merchants/merchants_find#index"
+          get "random", to: "merchants/merchants_random#show"
         end
       end
       resources :transactions, only: [:index, :show]
