@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "find an item with params" do
+describe "find many items with params" do
   context "search using valid params" do
     before :each do
       @item1, @item2, @item3 = create_list(:item, 3)
