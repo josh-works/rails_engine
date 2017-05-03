@@ -1,1 +1,1 @@
-json.(@item, :id, :name, :description, :unit_price)
+json.(@item, :id, :name, :description, :unit_price, :merchant_id)

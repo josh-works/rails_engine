@@ -10,7 +10,6 @@ describe "Merchants API" do
 
     merchants = JSON.parse(response.body)
     merchant = merchants.first
-
     expect(merchants.count).to eq(3)
     expect(merchant).to have_key("id")
     expect(merchant).to have_key("name")
@@ -40,16 +39,3 @@ describe "Merchants API" do
 
 
 end
-
-
-# it "finds a merchant by its name" do
-#     data_merchant = Fabricate(:merchant)
-#
-#     get "/api/v1/merchants/find?name=#{data_merchant.name}"
-#
-#     expect(response).to be_success
-#
-#     merchant = JSON.parse(response.body)
-#
-#     expect(merchant["name"]).to eq("#{data_merchant.name}")
-#   end

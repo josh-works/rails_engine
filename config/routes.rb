@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       resources :items, only: [:index, :show], :controller => "items/items" do
         collection do
           get "find", to: "items/items_find#show"
+          get "find_all", to: "items/items_find#index"
+          get "random", to: "items/items_random#show"
         end
       end
       resources :invoices, only: [:index, :show], :controller => "invoices/invoices"
