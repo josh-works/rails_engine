@@ -1,25 +1,17 @@
 class ApplicationController < ActionController::API
 
-  helper_method :format_find_params
-
-  def format_find_params(params)
-    if params[:created_at]
-      string_to_created(params[:created_at])
-    elsif params[:updated_at]
-      string_to_updated(params[:updated_at])
-    elsif params[:unit_price]
-      string_to_unit_price(params[:unit_price])
-    else
-      params
-    end
+  def format_params
+    string_to_created(params[:created_at]) if params[:created_at]
+    string_to_updated(params[:updated_at]) if params[:updated_at]
+    string_to_unit_price(params[:unit_price]) if params[:unit_price]
   end
 
   def string_to_created(date)
-    {created_at: DateTime.parse(date)}
+    params.merge!(created_at: DateTime.parse(date))
   end
 
   def string_to_updated(date)
-    {updated_at: DateTime.parse(date)}
+    params.merge!(updated_at: DateTime.parse(date))
   end
 
   def penny_converter(price)
@@ -27,7 +19,7 @@ class ApplicationController < ActionController::API
   end
 
   def string_to_unit_price(price)
-    {unit_price: penny_converter(price)}
+    params.merge!(unit_price: penny_converter(price))
   end
 
 end

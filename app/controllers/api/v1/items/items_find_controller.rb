@@ -1,11 +1,12 @@
 class Api::V1::Items::ItemsFindController < ApplicationController
+  before_action :format_params
 
   def index
-    @items = Item.where(format_find_params(search_params))
+    @items = Item.where(search_params)
   end
 
   def show
-    @item = Item.find_by(format_find_params(search_params))
+    @item = Item.find_by(search_params)
   end
 
   private
