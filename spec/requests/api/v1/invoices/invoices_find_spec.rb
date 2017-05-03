@@ -12,7 +12,7 @@ describe "find an invoice with params" do
       get '/api/v1/invoices/find', params: {customer_id: @invoice.customer_id}
     end
     it "can find an invoice with merchant id params" do
-      get '/api/v1/invoices/find', params: {description: @invoice.merchant_id}
+      get '/api/v1/invoices/find', params: {merchant_id: @invoice.merchant_id}
     end
     it "can find an invoice with status param" do
       get '/api/v1/invoices/find', params: {status: @invoice.status}
