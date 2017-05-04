@@ -10,6 +10,7 @@ describe "Merchants API" do
 
     merchants = JSON.parse(response.body)
     merchant = merchants.first
+
     expect(merchants.count).to eq(3)
     expect(merchant).to have_key("id")
     expect(merchant).to have_key("name")
