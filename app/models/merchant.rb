@@ -9,4 +9,8 @@ class Merchant < ApplicationRecord
     Merchant.find(id)
   end
 
+  def items
+    Item.where(merchant_id: id)
+  end
+
 end

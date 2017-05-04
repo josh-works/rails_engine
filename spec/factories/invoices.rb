@@ -3,5 +3,9 @@ FactoryGirl.define do
     customer
     merchant
     status "successful"
+    factory :invoices_with_items do
+      #lauren's factory
+      invoice_items {create_list(:invoice_item, 2)}
+    end
   end
 end

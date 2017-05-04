@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :merchants, only: [:index, :show], :controller => "merchants/merchants" do
+        get "items", to: "merchants/merchant_items#index"
+        get "invoices", to: "merchants/merchant_invoices#index"
         collection do
           get "find", to: "merchants/merchants_find#show"
           get "find_all", to: "merchants/merchants_find#index"
