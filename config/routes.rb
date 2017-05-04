@@ -41,6 +41,9 @@ Rails.application.routes.draw do
       resources :invoices, only: [:index, :show], :controller => "invoices/invoices" do
         get "transactions", to: "invoices/invoice_transactions#index"
         get "invoice_items", to: "invoices/invoice_invoice_items#index"
+        get "items", to: "invoices/invoice_items#index"
+        get "customer", to: "invoices/invoice_customers#show"
+        get "merchant", to: "invoices/invoice_merchants#show"
         collection do
           get "find", to: "invoices/invoices_find#show"
           get "find_all", to: "invoices/invoices_find#index"
