@@ -17,26 +17,14 @@ class Loader
 
   def self.seed_transactions
     CSV.foreach('db/data/transactions.csv', :headers => true) do |row|
-          Transaction.create!([
-                              invoice_id: row['invoice_id'],
-                              credit_card_number: row['credit_card_number'],
-                              credit_card_expiration_date: row['credit_card_expiration_date'],
-                              result: row['result'],
-                              trans_created_at: row['created_at'],
-                              trans_updated_at: row['updated_at']
-                              ])
+          Transaction.create!([row.to_hash])
       puts "Created Transaction #{Transaction.last.id}"
     end
   end
 
   def self.seed_customers
     CSV.foreach('db/data/customers.csv', :headers => true) do |row|
-      Customer.create([
-                       first_name: row['first_name'],
-                       last_name: row['last_name'],
-                       cust_created_at: row['created_at'],
-                       cust_updated_at: row['updated_at']
-                       ])
+      Customer.create!([row.to_hash])
       puts "Created Customer #{Customer.last.id}"
     end
   end

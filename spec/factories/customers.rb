@@ -8,7 +8,5 @@ FactoryGirl.define do
     sequence :last_name do |n|
       HPFaker.last_name
     end
-    cust_created_at "2017-05-01 19:57:02"
-    cust_updated_at "2017-05-01 19:57:02"
   end
 end
