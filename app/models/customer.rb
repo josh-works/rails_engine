@@ -9,4 +9,8 @@ class Customer < ApplicationRecord
       id = Customer.pluck(:id).sample
       Customer.find(id)
     end
+
+    def transactions
+      Transaction.joins(:invoice).where('invoices.customer_id = ?', id)
+    end
 end

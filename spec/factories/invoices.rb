@@ -7,5 +7,8 @@ FactoryGirl.define do
       #lauren's factory
       invoice_items {create_list(:invoice_item, 2)}
     end
+    factory :invoice_with_transactions do
+      transactions {create_list(:transaction, 2)}
+    end
   end
 end
