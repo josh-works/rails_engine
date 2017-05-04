@@ -26,4 +26,14 @@ class Merchant < ApplicationRecord
             .first
   end
 
+  def revenue
+    invoices.joins(:invoice_items, :transactions).
+    merge(Transaction.success).
+    sum("unit_price * quantity")
+  end
+
+  def format_revenue
+    format_unit_price(revenue)
+  end
+
 end

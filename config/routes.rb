@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         get "invoices", to: "merchants/merchant_invoices#index"
         get "customers_with_pending_invoices", to: "merchants/merchant_pending_customers#index"
         get "favorite_customer", to: "merchants/merchant_favorite_customer#show"
+        get "revenue", to: "merchants/merchant_revenue#show"
         collection do
           get "find", to: "merchants/merchants_find#show"
           get "find_all", to: "merchants/merchants_find#index"

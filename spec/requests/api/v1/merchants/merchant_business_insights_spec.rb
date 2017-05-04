@@ -37,4 +37,16 @@ describe "merchant business insight endpoints" do
     expect(customer["first_name"]).to eq(@customer1.first_name)
     expect(customer["last_name"]).to eq(@customer1.last_name)
   end
+
+  it "returns total revenue for merchant" do
+    merchant_1 = create(:merchant_with_invoices_and_items)
+
+    get "/api/v1/merchants/#{merchant_1.id}/revenue"
+
+    expect(response).to be_success
+
+    revenue = JSON.parse(response.body)
+
+    expect(revenue["revenue"]).to eq("120.00")
+  end
 end
