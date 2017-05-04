@@ -8,5 +8,9 @@ FactoryGirl.define do
     sequence :last_name do |n|
       HPFaker.last_name
     end
+
+    factory :customer_with_many_invoices do
+      invoices {create_list(:invoice_with_transactions, 3)}
+    end
   end
 end

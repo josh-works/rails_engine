@@ -5,6 +5,6 @@ FactoryGirl.define do
       "12345777#{n}"
     end
     credit_card_expiration_date ""
-    result 1
+    result "success"
   end
 end

@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :merchants, only: [:index, :show], :controller => "merchants/merchants" do
+        get "items", to: "merchants/merchant_items#index"
+        get "invoices", to: "merchants/merchant_invoices#index"
+        get "customers_with_pending_invoices", to: "merchants/merchant_pending_customers#index"
+        get "favorite_customer", to: "merchants/merchant_favorite_customer#show"
         collection do
           get "find", to: "merchants/merchants_find#show"
           get "find_all", to: "merchants/merchants_find#index"
@@ -11,6 +15,7 @@ Rails.application.routes.draw do
         end
       end
       resources :transactions, only: [:index, :show], :controller => "transactions/transactions" do
+        get "invoice", to: "transactions/transaction_invoice#show"
         collection do
           get "find", to: "transactions/transactions_find#show"
           get "find_all", to: "transactions/transactions_find#index"
@@ -18,6 +23,8 @@ Rails.application.routes.draw do
         end
       end
       resources :customers, only: [:index, :show], :controller => "customers/customers" do
+        get "invoices", to: "customers/customer_invoices#index"
+        get "transactions", to: "customers/customer_transactions#index"
         collection do
           get "find", to: "customers/customers_find#show"
           get "find_all", to: "customers/customers_find#index"
