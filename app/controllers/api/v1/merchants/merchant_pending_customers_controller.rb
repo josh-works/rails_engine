@@ -3,7 +3,6 @@ class Api::V1::Merchants::MerchantPendingCustomersController < ApplicationContro
   def index
     @merchant = Merchant.find(params[:merchant_id])
     @customers = @merchant.pending_customers
-    binding.pry
   end
 
 end

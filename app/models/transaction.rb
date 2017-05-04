@@ -1,6 +1,6 @@
 class Transaction < ApplicationRecord
-  scope :success, -> { where(status: "success") }
-  scope :failed, -> { where(status: "failed") }
+  scope :success, -> { where(result: "success") }
+  scope :failed, -> { where(result: "failed") }
 
   validates :invoice, presence: true
   validates :credit_card_number, presence: true

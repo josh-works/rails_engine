@@ -1,4 +1,5 @@
 class Invoice < ApplicationRecord
+  # scope :success, -> { joins(:transactions, :invoices).where(transactions: {result: "success"} ) }
   validates :status, presence: true
 
   belongs_to :customer
