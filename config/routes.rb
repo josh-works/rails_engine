@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       end
       resources :items, only: [:index, :show], :controller => "items/items" do
         collection do
+          get "most_revenue", to: "items/most_revenue_items#index"
           get "find", to: "items/items_find#show"
           get "find_all", to: "items/items_find#index"
           get "random", to: "items/items_random#show"

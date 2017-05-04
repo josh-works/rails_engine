@@ -8,4 +8,12 @@ class Item < ApplicationRecord
     id = Item.pluck(:id).sample
     Item.find(id)
   end
+
+  def self.most_revenue(quantity)
+    Item.select("items.*, sum(invoice_items.unit_price * invoice_items.quantity) AS total")
+        .joins(:invoice_items)
+        .group(:id)
+        .order("total DESC")
+        .limit(quantity.to_i)
+  end
 end
