@@ -35,6 +35,7 @@ Rails.application.routes.draw do
         get "invoice_items", to: "items/items_invoice_items#index"
         get "merchant", to: "items/items_merchants#show"
         collection do
+          get "most_revenue", to: "items/most_revenue_items#index"
           get "find", to: "items/items_find#show"
           get "find_all", to: "items/items_find#index"
           get "random", to: "items/items_random#show"
