@@ -1,4 +1,4 @@
-class Api::V1::Customers::CustomersRandomController < ApplicationController
+class Api::V1::Transactions::TransactionsRandomController < ApplicationController
 
   def show
     @transaction = Transaction.random
