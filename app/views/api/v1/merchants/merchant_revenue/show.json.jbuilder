@@ -1,1 +1,1 @@
-json.revenue(@merchant.format_revenue)
+json.revenue(@revenue)

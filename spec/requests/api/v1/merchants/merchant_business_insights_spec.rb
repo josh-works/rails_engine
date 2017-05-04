@@ -49,4 +49,20 @@ describe "merchant business insight endpoints" do
 
     expect(revenue["revenue"]).to eq("120.00")
   end
+
+  it "returns total revenue for specific merchant on specific date" do
+    merchant_1 = create(:merchant_with_invoices_and_items)
+    merchant_1.invoices.first.update(created_at: DateTime.yesterday)
+
+    invoice_date_time = merchant_1.invoices.last.created_at.strftime("%Y-%m-%d %H:%M:%S")
+
+    get "/api/v1/merchants/#{merchant_1.id}/revenue", params: {date: invoice_date_time}
+
+    expect(response).to be_success
+    revenue = JSON.parse(response.body)
+
+    expect(revenue["revenue"]).to eq("80.00")
+  end
+
+
 end

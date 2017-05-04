@@ -27,13 +27,19 @@ class Merchant < ApplicationRecord
   end
 
   def revenue
-    invoices.joins(:invoice_items, :transactions).
+    raw_revenue = invoices.joins(:invoice_items, :transactions).
     merge(Transaction.success).
     sum("unit_price * quantity")
+    format_unit_price(raw_revenue)
   end
 
-  def format_revenue
-    format_unit_price(revenue)
+  def revenue_by_date(datetime)
+    date = datetime.to_date
+    raw_revenue = invoices.joins(:invoice_items, :transactions).
+    where(invoices: {created_at: date.beginning_of_day..date.end_of_day}).
+    merge(Transaction.success).
+    sum("unit_price * quantity")
+    format_unit_price(raw_revenue)
   end
 
 end
