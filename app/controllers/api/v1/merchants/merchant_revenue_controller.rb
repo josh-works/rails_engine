@@ -5,7 +5,7 @@ class Api::V1::Merchants::MerchantRevenueController < ApplicationController
     if params[:date]
       @revenue = merchant.revenue_by_date(params[:date])
     else
-      @revenue = merchant.format_revenue
+      @revenue = merchant.revenue
     end
   end
 
