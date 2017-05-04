@@ -1,5 +1,3 @@
-# GET /api/v1/customers/:id/transactions returns a collection of associated transactions
-
 require 'rails_helper'
 
 describe "customer relationship endpoints" do

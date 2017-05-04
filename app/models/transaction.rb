@@ -1,4 +1,7 @@
 class Transaction < ApplicationRecord
+  scope :success, -> { where(status: "success") }
+  scope :failed, -> { where(status: "failed") }
+
   validates :invoice, presence: true
   validates :credit_card_number, presence: true
   validates :result, presence: true
@@ -9,5 +12,5 @@ class Transaction < ApplicationRecord
     id = Transaction.pluck(:id).sample
     Transaction.find(id)
   end
-  
+
 end

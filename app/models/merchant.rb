@@ -13,4 +13,17 @@ class Merchant < ApplicationRecord
     Item.where(merchant_id: id)
   end
 
+  def pending_customers
+    Customer.joins(invoices: :transactions).where('invoices.merchant_id = ?', id).pluck('transactions.result')
+    binding.pry
+  end
+
+  def favorite_customer
+    Customer.joins(invoices: :transactions)
+            .where('invoices.merchant_id = ? AND transactions.result = ?', id, 'success')
+            .group('customers.id')
+            .order('count("transactions.id") DESC')
+            .first
+  end
+
 end
