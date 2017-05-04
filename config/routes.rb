@@ -10,8 +10,20 @@ Rails.application.routes.draw do
           get "random", to: "merchants/merchants_random#show"
         end
       end
-      resources :transactions, only: [:index, :show]
-      resources :customers, only: [:index, :show]
+      resources :transactions, only: [:index, :show], :controller => "transactions/transactions" do
+        collection do
+          get "find", to: "transactions/transactions_find#show"
+          get "find_all", to: "transactions/transactions_find#index"
+          get "random", to: "transactions/transactions_random#show"
+        end
+      end
+      resources :customers, only: [:index, :show], :controller => "customers/customers" do
+        collection do
+          get "find", to: "customers/customers_find#show"
+          get "find_all", to: "customers/customers_find#index"
+          get "random", to: "customers/customers_random#show"
+        end
+      end
       resources :items, only: [:index, :show], :controller => "items/items" do
         collection do
           get "find", to: "items/items_find#show"

@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 20170502210548) do
   create_table "customers", force: :cascade do |t|
     t.text     "first_name"
     t.text     "last_name"
-    t.datetime "cust_created_at"
-    t.datetime "cust_updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "invoice_items", force: :cascade do |t|
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(version: 20170502210548) do
     t.string   "credit_card_number"
     t.string   "credit_card_expiration_date"
     t.integer  "result"
-    t.datetime "trans_created_at"
-    t.datetime "trans_updated_at"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end
