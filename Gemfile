@@ -36,6 +36,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
   gem 'harry_potter_faker'
+  gem 'simplecov'
 end
 
 group :development do
