@@ -14,8 +14,13 @@ class Merchant < ApplicationRecord
   end
 
   def pending_customers
-    Customer.joins(invoices: :transactions).where('invoices.merchant_id = ?', id).pluck('transactions.result')
-    binding.pry
+    success_cust_invoices = invoices.joins(:transactions)
+                                    .merge(Transaction.success)
+                                    .pluck(:customer_id)
+    cust_failed_invoices = invoices.where
+                                    .not(customer_id: success_cust_invoices)
+                                    .pluck(:customer_id)
+    Customer.where(id: cust_failed_invoices)
   end
 
   def favorite_customer
@@ -48,6 +53,24 @@ class Merchant < ApplicationRecord
     merge(Transaction.success).
     sum("unit_price * quantity")
     self.first.format_unit_price(raw_revenue)
+  end
+
+  def self.most_revenue(quantity)
+    Merchant.joins(invoices: [:invoice_items, :transactions])
+            .merge(Transaction.success)
+            .select("merchants.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS revenue")
+            .group("merchants.id")
+            .order("revenue DESC")
+            .limit(quantity)
+  end
+
+  def self.most_items(quantity)
+    Merchant.joins(invoices: [:invoice_items, :transactions])
+            .merge(Transaction.success)
+            .select("merchants.*, SUM(invoice_items.quantity) AS item_count")
+            .group("merchants.id")
+            .order("item_count DESC")
+            .limit(quantity)
   end
 
 end
