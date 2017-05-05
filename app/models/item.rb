@@ -16,4 +16,12 @@ class Item < ApplicationRecord
         .order("total DESC")
         .limit(quantity.to_i)
   end
+
+  def self.top_by_number_sold(quantity = 5)
+    Item.select("items.*").
+        joins(:invoice_items).
+        group("invoice_items.item_id").
+        order("sum(invoice_items.quantity) DESC").
+        limit(quantity)
+  end
 end

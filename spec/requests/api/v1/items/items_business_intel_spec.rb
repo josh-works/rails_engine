@@ -26,4 +26,23 @@ describe "items business intelligence" do
     expect(items.last["id"]).to eq(item2.id)
     expect(items).to_not include(item3.id)
   end
+
+  it "loads a variable number of top items ranked by total number sold" do
+    invoice_items = create_list(:invoice_item, 10)
+    invoice_items[1].update(item_id: 1)
+    group_size_1 = 2
+
+    get "/api/v1/items/most_items", params: {quantity: group_size_1}
+
+    expect(response).to be_success
+
+    items = JSON.parse(response.body)
+    expect(items.empty?).to be(false)
+    item_1 = items.first
+
+    
+    expect(item_1["name"]).to eq(invoice_items.first.item.name)
+    expect(item_1["id"]).to eq(invoice_items[0].item.id)
+
+  end
 end
