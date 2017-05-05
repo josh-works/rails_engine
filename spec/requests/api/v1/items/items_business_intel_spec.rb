@@ -44,23 +44,4 @@ describe "items business intelligence" do
     expect(item_1["id"]).to eq(invoice_items[0].item.id)
   end
 
-  xit "loads the best day associated with one item" do
-    item_1, item_2, item_3 = create_list(:invoices_with_items, 3)
-    item_1.invoice_items.map do |ii|
-      ii.update(created_at: DateTime.yesterday)
-    end
-    item_2.invoice_items.map do |ii|
-      ii.update(created_at: DateTime.yesterday)
-    end
-
-    get "/api/v1/items/#{item_1.id}/best_day"
-
-    expect(response).to be_success
-
-    date = JSON.parse(response.body)
-
-    expect(date["best_day"]).to eq(item_1.invoice_items.first.created_at)
-  end
-
-
 end

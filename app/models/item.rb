@@ -24,14 +24,4 @@ class Item < ApplicationRecord
         order("sum(invoice_items.quantity) DESC").
         limit(quantity)
   end
-
-  def best_day
-    # InvoiceItem.find_by_sql("SELECT i.created_at, SUM(unit_price * quantity) AS sales
-    #            FROM invoice_items ii
-    #            JOIN invoices i ON i.id = ii.invoice_id
-    #            JOIN transactions t ON t.invoice_id = i.id
-    #            WHERE item_id = 1099 AND t.result = 'success'
-    #            GROUP BY i.created_at
-    #            ORDER BY sales DESC, i.created_at DESC;")
-  end
 end
