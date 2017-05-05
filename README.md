@@ -38,7 +38,13 @@ $ rake
 ## Design Decisions made so far
 
 ### Lauren
-/ pending
+- For record endpoints, a lot of the methods used were repetitive, so we built them in the application controller so we could share them across all find controllers.
+- For `/find?` endpoints, the controller uses a ActiveRecord "find_by" method - since it only pulls out a single instance, we use the "show" in a new fancy controller called "FindController"
+- When the request hits the controller, there's a before_action callback to properly format the params because the spec harness wants to get dates like this: "2012-03-27T14:54:03.000Z" and unit price like this: "174.00"
+- The before_action (format_params), in the application controller, first determines if we need to format the params by checking if it's a created_at, updated_at, or unit_price param in the "format_params" method, which will then refer it to the next appropriate method.
+- Then in that next method (if deemed necessary), we use a params.merge! which will permanently override the params the user provided and put the new one we want (which will change dates to DateTime objects and prices to an integer in pennies) we so can properly query using ActiveRecord.
+- Then once the params are reformatted, we use the private method "search_params" and simply pass that into our find_by command to return the appropriate instance to pass to our jbuilder view.
+- For the `/find_all?` endpoints, the process is EXACTLY THE SAME as `/find?` except we use ActiveRecord "where" in the index method of our FindController, which returns an array (even if it only returns one instance) of instances. Same process where we format the user query before passing it into our index where method, and then our index jbuilder view.
 
 ### Josh
 - Not importing any more data than seems absolutely necessary. I.E. merchants data have four columns: [id, name, created_at, updated_at]. I'm bringing in only first two in initial migration, for two reasons:
