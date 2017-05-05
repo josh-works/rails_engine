@@ -42,4 +42,12 @@ class Merchant < ApplicationRecord
     format_unit_price(raw_revenue)
   end
 
+  def self.total_by_date(datetime)
+    raw_revenue = Invoice.joins(:invoice_items, :transactions).
+    where(invoices: {created_at: datetime.to_datetime}).
+    merge(Transaction.success).
+    sum("unit_price * quantity")
+    self.first.format_unit_price(raw_revenue)
+  end
+
 end
