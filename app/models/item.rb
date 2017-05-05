@@ -26,13 +26,12 @@ class Item < ApplicationRecord
   end
 
   def best_day
-    invoice = InvoiceItem.where(item_id: self.id).
-    select("invoice_items.quantity AS count").
-    joins(:invoices, :items).
-    group("invoices.id").
-    order("sum(count) DESC").
-    limit(1)
-    invoice.first.created_at
+    # InvoiceItem.find_by_sql("SELECT i.created_at, SUM(unit_price * quantity) AS sales
+    #            FROM invoice_items ii
+    #            JOIN invoices i ON i.id = ii.invoice_id
+    #            JOIN transactions t ON t.invoice_id = i.id
+    #            WHERE item_id = 1099 AND t.result = 'success'
+    #            GROUP BY i.created_at
+    #            ORDER BY sales DESC, i.created_at DESC;")
   end
-
 end
