@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         get "favorite_customer", to: "merchants/merchant_favorite_customer#show"
         get "revenue", to: "merchants/merchant_revenue#show"
         collection do
+          get "revenue", to: "merchants/merchants_revenue#show"
           get "find", to: "merchants/merchants_find#show"
           get "find_all", to: "merchants/merchants_find#index"
           get "random", to: "merchants/merchants_random#show"
