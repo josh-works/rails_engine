@@ -16,4 +16,22 @@ class Item < ApplicationRecord
         .order("total DESC")
         .limit(quantity.to_i)
   end
+
+  def self.top_by_number_sold(quantity = 5)
+    Item.select("items.*").
+        joins(:invoice_items).
+        group("invoice_items.item_id").
+        order("sum(invoice_items.quantity) DESC").
+        limit(quantity)
+  end
+
+  def best_day
+    # InvoiceItem.find_by_sql("SELECT i.created_at, SUM(unit_price * quantity) AS sales
+    #            FROM invoice_items ii
+    #            JOIN invoices i ON i.id = ii.invoice_id
+    #            JOIN transactions t ON t.invoice_id = i.id
+    #            WHERE item_id = 1099 AND t.result = 'success'
+    #            GROUP BY i.created_at
+    #            ORDER BY sales DESC, i.created_at DESC;")
+  end
 end

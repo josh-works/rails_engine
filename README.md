@@ -10,7 +10,7 @@ $ git clone git@github.com:josh-works/rails_engine.git
 $ git clone git@github.com:turingschool/rales_engine_spec_harness.git
 
 # now for our specific app setup
-cd rails_engine
+$ cd rails_engine
 $ bundle
 $ rake db:drop
 $ rake db:create db:migrate
