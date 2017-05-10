@@ -1,21 +1,20 @@
 
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
-      resources :merchants, only: [:index, :show], :controller => "merchants/merchants" do
-        get "items", to: "merchants/merchant_items#index"
-        get "invoices", to: "merchants/merchant_invoices#index"
-        get "customers_with_pending_invoices", to: "merchants/merchant_pending_customers#index"
-        get "favorite_customer", to: "merchants/merchant_favorite_customer#show"
-        get "revenue", to: "merchants/merchant_revenue#show"
+      resources :merchants, only: [:index, :show], :controller => "merchants" do
+        get "items", to: "merchants/items#index"
+        get "invoices", to: "merchants/invoices#index"
+        get "customers_with_pending_invoices", to: "merchants/pending_customers#index"
+        get "favorite_customer", to: "merchants/favorite_customer#show"
+        get "revenue", to: "merchants/revenue_by_merchant#show"
         collection do
-          get "most_items", to: "merchants/merchants_most_items#index"
-          get "most_revenue", to: "merchants/merchants_most_revenue#index"
-          get "revenue", to: "merchants/merchants_revenue#show"
-          get "find", to: "merchants/merchants_find#show"
-          get "find_all", to: "merchants/merchants_find#index"
-          get "random", to: "merchants/merchants_random#show"
+          get "most_items", to: "merchants/most_items#index"
+          get "most_revenue", to: "merchants/most_revenue#index"
+          get "revenue", to: "merchants/revenue#show"
+          get "find", to: "merchants/find#show"
+          get "find_all", to: "merchants/find#index"
+          get "random", to: "merchants/random#show"
         end
       end
       resources :transactions, only: [:index, :show], :controller => "transactions/transactions" do

@@ -1,10 +1,10 @@
-class Api::V1::Merchants::MerchantsFindController < ApplicationController
+class Api::V1::Merchants::FindController < ApplicationController
   before_action :format_params
 
   def index
     @merchants = Merchant.where(search_params)
   end
-  
+
   def show
     @merchant = Merchant.find_by(search_params)
   end
