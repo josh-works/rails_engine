@@ -1,4 +1,4 @@
-class Api::V1::Merchants::PendingCustomersController < ApplicationController
+class Api::V1::PendingCustomersController < ApplicationController
 
   def index
     @merchant = Merchant.find(params[:merchant_id])

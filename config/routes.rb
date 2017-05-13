@@ -3,18 +3,18 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :merchants, only: [:index, :show], :controller => "merchants" do
-        get "items", to: "merchants/items#index"
-        get "invoices", to: "merchants/invoices#index"
-        get "customers_with_pending_invoices", to: "merchants/pending_customers#index"
-        get "favorite_customer", to: "merchants/favorite_customer#show"
+        get "items", to: "items#index"
+        get "invoices", to: "invoices#index"
+        get "customers_with_pending_invoices", to: "pending_customers#index"
+        get "favorite_customer", to: "favorite_customer#show"
         get "revenue", to: "merchants/revenue_by_merchant#show"
         collection do
           get "most_items", to: "merchants/most_items#index"
           get "most_revenue", to: "merchants/most_revenue#index"
           get "revenue", to: "merchants/revenue#show"
-          get "find", to: "merchants/find#show"
-          get "find_all", to: "merchants/find#index"
-          get "random", to: "merchants/random#show"
+          get "find", to: "find#show"
+          get "find_all", to: "find#index"
+          get "random", to: "random#show"
         end
       end
       resources :transactions, only: [:index, :show], :controller => "transactions/transactions" do
